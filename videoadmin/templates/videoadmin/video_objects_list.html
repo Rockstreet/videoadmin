@@ -3,19 +3,57 @@
 
 
 {% block content %}
+<div class="row" style="margin-top:50px;">
+<h2>Ваши объекты</h2>
+          {% if user and not user.is_anonymous %}
 
-    <div class="row" style="margin-top:50px;">
+              {% for item in userobjects %}
+
+                  {% for item_obj in item.video_objects.all %}
+
+                       <div class="col-md-4">
+                       <a href="{% url 'cameras' item_obj.pk %}">
+        <center>
+            <img src="/{{item_obj.file}}" title="{{item_obj.title}}"><br>
+
+            <b>{{ item_obj.title }}</b><br>{{item_obj.meta_description}}
+            <br>
+
+            </center><br><br>
+        </div>
+                      </a>
+
+
+                  {% endfor %}
+
+              {% endfor %}
+
+
+
+
+
+
+    {% else %}
+
+
         {% for item_obj in object_list %}
 
         <div class="col-md-4">
-            <img src="{{item_obj.file}}" title="{{item_obj.title}}"><br>
-            {{ item_obj.title }}<br><br>
+        <center>
+            <img src="/{{item_obj.file}}" title="{{item_obj.title}}"><br>
+
+            <b>{{ item_obj.title }}</b><br>{{item_obj.meta_description}}
+            <br>
+
+            </center><br><br>
         </div>
         {% endfor %}
 
-    </div>
 
 
+    {% endif %}
+
+</div>
 
 
 {% endblock %}

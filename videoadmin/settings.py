@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'mptt',
     'videoadmin',
-    'nested_admin'
+    'nested_admin',
+    'registration'
 ]
 
 MIDDLEWARE = [

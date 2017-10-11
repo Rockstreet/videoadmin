@@ -20,21 +20,50 @@
   </head>
   <body>
 
+
     <div class="container">
 
-      <!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead">
+
+      {% if user and not user.is_anonymous %}
+
+
+          <div class="navbar-form navbar-right">Вы вошли как:<b> {{ user.username }}</b> <a href="{% url 'auth_logout' %}" class="btn btn-sm btn-danger">Выход</a></div>
+
+                                    {% else %}
+                                   <form id="signin" class="navbar-form navbar-right" method="post" role="form" action="{% url 'auth_login' %}">
+        {% csrf_token %}
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="email" type="text" class="form-control" name="username" value="" placeholder="Логин">
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="password" type="password" class="form-control" name="password" value="" placeholder="Пароль">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                   </form>
+                                    {% endif %}
+
+
+
+
+
+
+        <div class="masthead">
          <img src="{% static 'images/logo.jpg' %}" style="float:left;" width="100">
         <h3 class="text-muted">&nbsp;</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li class="active"><a href="#">Главная</a></li>
+            <li class="active"><a href="/">Главная</a></li>
             <li><a href="">Как подключится </a></li>
             <li><a href="#">О нас</a></li>
             <li><a href="#">Контакты</a></li>
           </ul>
         </nav>
+
       </div>
 
 

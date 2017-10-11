@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-4"><h2>{{ object.title }}</h2></div>
+    </div>
+
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-4 col-md-offset-4">
+
+            <img width="320" height="240" scr="http://185.40.76.176:11012/rsapi/mjpeg?id=6ef9caa3-40c8-497f-b407-36ca42db150b&&framerate=10&viewSize=320x240user=admin&password=9213153">
+
+
+
+        <source src="http://185.40.76.176:11012/rsapi/stream?id=6ef9caa3-40c8-497f-b407-36ca42db150b&&framerate=10&viewSize=320x240user=admin&password=9213153" type='image/jpeg' />
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

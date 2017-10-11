@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-4"><h2>{{ object.title }}</h2></div>
+    </div>
+
+
+    {% for cameras in arr_cam %}
+
+
+<div class="col-md-4">
+<a href="{% url 'camera' cameras.pk %}">
+        <center>
+            <img width =250  src="{{ cameras.server_ip }}/rsapi/snapshot?id={{ cameras.camera_id }}&viewSize=250x250&user={{ cameras.server_login }}&password={{ cameras.server_pass }}" title="{{cameras.title}}"><br>
+
+            <b>{{ cameras.title }}</b><br>{{cameras.camera_description}}
+            <br>
+
+            </center><br><br>
+        </a>
+        </div>
+
+
+    {% endfor %}
+
+
+{% endblock %}

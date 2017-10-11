@@ -6,3 +6,4 @@ django-multiselectfield
 sorl-thumbnail
 Pillow
 django-nested-admin
+django-registration
