@@ -8,15 +8,12 @@
     </div>
 
     <div class="row" style="margin-top:50px;">
-        <div class="col-md-4 col-md-offset-4">
-
-            <img width="320" height="240" scr="http://185.40.76.176:11012/rsapi/mjpeg?id=6ef9caa3-40c8-497f-b407-36ca42db150b&framerate=10&viewSize=320x240&user=admin&password=9213153">
+        <div class="col-md-4 center-block" >
 
 
-        <img src="http://185.40.76.176:11012/rsapi/mjpeg?id=6ef9caa3-40c8-497f-b407-36ca42db150b&&framerate=10&viewSize=320x240&user=admin&password=9213153">
 
 
-    <img src="http://185.40.76.176:11012/rsapi/mjpeg?id=6ef9caa3-40c8-497f-b407-36ca42db150b&&framerate=10&viewSize=320x240&user=admin&password=9213153">
+        <img width="700" src="{{ object.server_ip }}/rsapi/mjpeg?id={{ object.camera_id }}&framerate=10&user={{ object.server_login }}&password={{ object.server_pass }}">
 
 
 
@@ -33,7 +30,9 @@
 
 
 
-        </div>
+
+
+
     </div>
 
 
