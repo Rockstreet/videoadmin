@@ -1,0 +1,10 @@
+docker exec -it CONTAINER python manage.py shell 
+
+Запуск джанго шелл в контейнере
+
+
+sudo docker exec -it videoadmin python manage.py createsuperuser
+
+Использоавние manage.py
+
+

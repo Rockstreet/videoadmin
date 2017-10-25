@@ -47,7 +47,7 @@ class Video_cameras(models.Model):
 
 class UserProfileObjects(models.Model):
     user = models.OneToOneField(User, related_name='related_name_user', default=2)
-    video_objects=models.ManyToManyField(Video_objects, verbose_name=u'Объект')
+    video_objects=models.ManyToManyField(Video_objects, verbose_name=u'Объект', blank=True)
 
     class Meta:
         verbose_name = _("Объекты")
