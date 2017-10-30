@@ -30,7 +30,8 @@ urlpatterns = [
 
     url(r'^cameras/(?P<pk>[-\w]+)/$', views.DetailView.as_view(), name='cameras'),
     url(r'^camera/(?P<pk>[-\w]+)/$', views.DetailCameraView.as_view(), name='camera'),
-    url(r'^generate_users/', views.GenerateUsers.as_view(), name='generate_users')
+    url(r'^generate_users/', views.GenerateUsers.as_view(), name='generate_users'),
+    url(r'^contact', views.Contact.as_view(), name='contact')
 
 ]
 
