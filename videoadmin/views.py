@@ -46,6 +46,10 @@ class DetailCameraView(generic.DetailView):
     model = Video_cameras
 
 
+class Contact(generic.TemplateView):
+	template_name = 'videoadmin/contact.html'
+
+
 class GenerateUsers(generic.TemplateView):
 
     template_name = 'videoadmin/generate_users.html'
@@ -60,7 +64,7 @@ class GenerateUsers(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(GenerateUsers, self).get_context_data(**kwargs)
 
-        f = open('./static/files/ber.csv')
+        f = open('./static/files/del.csv')
 
         file_mas=[]
 
@@ -74,28 +78,15 @@ class GenerateUsers(generic.TemplateView):
             uname=str(line).strip();
 
             file_mas.append(str(line).strip()+" "+str(rid))
-
-
-
-        usern = "ber_8-A.1"
-        passw = "2nIMiaYj"
-        user = User.objects.create(username=usern)
-        user.set_password(passw)
-        user.save()
-        profile = UserProfileObjects.objects.create(user=User.objects.filter(username=usern).first())
-        profile.video_objects.add(Video_objects.objects.filter(title='ЖК «Дельфин»').first().pk)
-        profile.save()
-
-
-
-
-
-
-
-
-
-
-
+            usern = str(line).strip()
+            passw = str(rid)
+           
+           # user = User.objects.create(username=usern)
+           # user.set_password(passw)
+           # user.save()
+           # profile = UserProfileObjects.objects.create(user=User.objects.filter(username=usern).first())
+           # profile.video_objects.add(Video_objects.objects.filter(id=3).first().pk)
+           # profile.save()
 
 
         context['file_mas']=file_mas
