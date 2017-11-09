@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 
-
 {% block content %}
+
+
+
 <div class="row" style="margin-top:50px;">
-<h2>Ваши объекты</h2>
+<h2>Объекты</h2>
           {% if user and not user.is_anonymous %}
 
               {% for item in userobjects %}
@@ -54,6 +56,6 @@
     {% endif %}
 
 </div>
-
-
+    
 {% endblock %}
+

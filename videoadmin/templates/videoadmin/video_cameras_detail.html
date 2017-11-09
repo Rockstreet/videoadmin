@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 
+
+
 {% block content %}
 
+{% if user and not user.is_anonymous %}
+
     <div class="row" style="margin-top:50px;">
-        <div class="col-md-4"><h2>{{ object.title }}</h2></div>
+        <div class="col-md-4"><h2>{{ object.title }}</h2></div> 
     </div>
 
     <div class="row" style="margin-top:50px;">
@@ -13,27 +17,20 @@
 
 
 
-        <img width="700" src="{{ object.server_ip }}/rsapi/mjpeg?id={{ object.camera_id }}&framerate=10&user={{ object.server_login }}&password={{ object.server_pass }}">
+        <img width="700" src="{{ object.server_ip }}/rsapi/mjpeg?id={{ object.camera_id }}&framerate=10&user={{ object.server_login }}&password={{ object.server_pass }}&v
+iewSize=1024x768"><br><br>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<a href="{% url 'arhive'%}" class="btn btn-primary">Смотреть архив</a>
 
     </div>
+
+        {% else %}
+
+            <div class="row" style="margin-top:50px;">
+        <div class="col-md-4"><h2>Необходима авторизация</h2></div>
+    </div>
+
+    {% endif %}
 
 
 

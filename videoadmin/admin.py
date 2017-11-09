@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django_mptt_admin.admin import DjangoMpttAdmin
+from django_mptt_admin.admin import DjangoMpttAdmin, MPTTModelAdmin
 from .models import Video_objects, Video_cameras, UserProfileObjects
 import nested_admin
 
@@ -22,12 +22,8 @@ admin.site.register(User, UserProfileAdmin)
 
 
 
-class Video_objectsAdmin(admin.ModelAdmin):
-    model = Video_objects
-    exclude = ('num',)
-
-
-
+class Video_objectsAdmin(DjangoMpttAdmin):
+    list_display = ('title', )
 admin.site.register(Video_objects, Video_objectsAdmin)
 
 

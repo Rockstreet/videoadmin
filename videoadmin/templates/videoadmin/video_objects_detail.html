@@ -1,22 +1,32 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+
+
+
 
 
 {% block content %}
+
+    {% if user and not user.is_anonymous %}
 
     <div class="row" style="margin-top:50px;">
         <div class="col-md-4"><h2>{{ object.title }}</h2></div>
     </div>
 
-
+    <div class="row">
     {% for cameras in arr_cam %}
 
 
 <div class="col-md-4">
 <a href="{% url 'camera' cameras.pk %}">
         <center>
-            <img width =250  src="{{ cameras.server_ip }}/rsapi/snapshot?id={{ cameras.camera_id }}&viewSize=250x250&user={{ cameras.server_login }}&password={{ cameras.server_pass }}" title="{{cameras.title}}"><br>
 
-            <b>{{ cameras.title }}</b><br>{{cameras.camera_description}}
+            <div class="img_box" style="height: 250px; width: 250px; background: url({% static 'images/blank.png' %});">
+            <img width="250" height="250"  src="{{ cameras.server_ip }}/rsapi/snapshot?id={{ cameras.camera_id }}&viewSize=250x250&user={{ cameras.server_login }}&password={{ cameras.server_pass }}" ><br>
+            </div>
+
+            <b>{{ cameras.title }}</b><br><!--{{cameras.camera_description}}-->
             <br>
 
             </center><br><br>
@@ -26,5 +36,17 @@
 
     {% endfor %}
 
+    </div>
+
+     {% else %}
+
+            <div class="row" style="margin-top:50px;">
+        <div class="col-md-4"><h2>Необходима авторизация</h2></div>
+    </div>
+
+    {% endif %}
+
 
 {% endblock %}
+
+

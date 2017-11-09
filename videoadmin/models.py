@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 
 from sorl.thumbnail import ImageField
 
-class Video_objects(models.Model):
+class Video_objects(MPTTModel, models.Model):
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True, verbose_name=u"Родительский элемент")
     created_date = models.DateTimeField(_("Дата создания"), auto_now_add=True, editable=False)
     edited_date = models.DateTimeField(_("Дата редактирования"), auto_now=True, editable=False, null=True)
     title = models.CharField(_("Название"), max_length=1000, default='')
@@ -13,13 +14,18 @@ class Video_objects(models.Model):
     file = ImageField(_("Обложка 250X250"), upload_to='video_objects', blank=True)
 
 
-    def __str__(self):
-        return self.title
+
+
+    class MPTTMeta:
+        order_insertion_by = ['title']
 
     class Meta:
         verbose_name = _("Объекты")
         verbose_name_plural = _("Объекты")
         ordering = ['title', ]
+
+    def __str__(self):
+        return self.title
 
 
 
