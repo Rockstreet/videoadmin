@@ -53,6 +53,11 @@ class Arhive(generic.TemplateView):
 	template_name = 'videoadmin/arhive.html'
 
 
+class ArhiveView(generic.DetailView):
+    model = Video_cameras
+    template_name = 'videoadmin/camera_arhive.html'
+
+
 class GenerateUsers(generic.TemplateView):
 
     template_name = 'videoadmin/generate_users.html'

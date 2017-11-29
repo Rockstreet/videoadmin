@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if user and not user.is_anonymous %}
+
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-4"><h2>Архив - {{ object.title }}</h2></div>
+    </div>
+
+
+<div class="container">
+    <div class="row">
+        <div class='col-sm-3'>
+            <div class="form-group">Введите дату и время:
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" id="mydate">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+<br>
+                <div class='input-group'>
+
+                <input type="button" class="btn btn-primary" id="get_me_arheve" value="Смотреть">
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-4 center-block" >
+
+
+
+
+        <img width="640" src="{{ object.server_ip }}/rsapi/snapshot?id={{ object.camera_id }}&viewSize=640x480&user={{ object.server_login }}&password={{ object.server_pass }}"><br><br>
+
+
+        <img width="640" src="{{ object.server_ip }}/rsapi/archive/mjpeg?id={{ object.camera_id }}&startTime=2017-11-
+19T12:00:01&direction=Forward&speed=2&user={{ object.server_login }}&password={{ object.server_pass }}&v
+iewSize=1024x768"><br><br>
+
+
+
+
+
+
+
+
+<a href="{% url 'camera' object.pk %}" class="btn btn-primary">Смотреть трансляцию</a>
+
+    </div>
+
+        {% else %}
+
+            <div class="row" style="margin-top:50px;">
+        <div class="col-md-4"><h2>Необходима авторизация</h2></div>
+    </div>
+
+    {% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

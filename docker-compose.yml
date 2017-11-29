@@ -3,6 +3,9 @@ version: '2'
 services:
   db:
     image: postgres
+    container_name: videoadmin_db_1
+    volumes:
+             - ./pgdata:/pgdata
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
@@ -10,11 +13,6 @@ services:
       - .:/code
     container_name: videoadmin
     ports:
-      - "8000:8000"
+      - "80:8000"
     depends_on:
       - db
-
-  adminer:
-     image: adminer
-     ports:
-           - 8080:8080

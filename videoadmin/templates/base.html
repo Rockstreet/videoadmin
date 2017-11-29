@@ -10,6 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -96,9 +97,69 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/moment.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+
+    <script language="JavaScript">
+
+        function get_me_arheve()
+        {
+
+        }
+
+
+
+
+         $(function () {
+
+             d=new Date();
+             d2=new Date();
+
+             d2.setDate(d2.getDate() - 10);
+
+
+
+
+
+
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'ru',
+                    minDate: d2,
+                    maxDate: d
+
+                });
+
+
+                $('#get_me_arheve').click(function () {
+
+
+           
+
+
+                   //2017-11-19
+
+                    //d=new Date($('#mydate').val());
+
+
+                    dat=$('#datetimepicker2').datetimepicker("date");
+
+                    get_date=formatDate(dat);
+
+                    //get_time=dat.formatDate();
+
+                    alert(get_date);
+
+
+
+                });
+
+                });
+
+    </script>
+
   </body>
 </html>
 
