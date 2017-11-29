@@ -136,7 +136,31 @@
                 $('#get_me_arheve').click(function () {
 
 
-           
+                     function formatDate(date) {
+
+                          var dd = date.getDate();
+                          if (dd < 10) dd = '0' + dd;
+
+                          var mm = date.getMonth() + 1;
+                          if (mm < 10) mm = '0' + mm;
+
+                          var yy = date.getFullYear() % 100;
+                          if (yy < 10) yy = '0' + yy;
+
+                          return '20'+yy + '-' + mm + '-' + dd;
+                            }
+
+                      function formatTime(date)
+
+                      {
+                          var hh = date.getHours();
+                          if (hh < 10) hh = '0' + hh;
+                          var min = date.getMinutes();
+                          if (min < 10) min = '0' + min;
+
+
+                          return hh+":"+min;
+                      }
 
 
                    //2017-11-19
@@ -146,11 +170,15 @@
 
                     dat=$('#datetimepicker2').datetimepicker("date");
 
+                    dat=new Date(dat);
+
                     get_date=formatDate(dat);
 
-                    //get_time=dat.formatDate();
+                    get_time=formatTime(dat);
+
 
                     alert(get_date);
+                    alert(get_time);
 
 
 
