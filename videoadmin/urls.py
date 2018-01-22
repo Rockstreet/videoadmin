@@ -32,8 +32,12 @@ urlpatterns = [
     url(r'^camera/(?P<pk>[-\w]+)/$', views.DetailCameraView.as_view(), name='camera'),
     url(r'^generate_users/', views.GenerateUsers.as_view(), name='generate_users'),
     url(r'^contact', views.Contact.as_view(), name='contact'),
+    url(r'^sign_in', views.Sign_in.as_view(), name='sign_in'),
     url(r'^arhive', views.Arhive.as_view(), name='arhive'),
-    url(r'^camera_arhive/(?P<pk>[-\w]+)/$', views.ArhiveView.as_view(), name='camera_arhive')
+    url(r'^good_send', views.GoodSend.as_view(), name='good_send'),
+    url(r'^camera_arhive/(?P<pk>[-\w]+)/$', views.ArhiveView.as_view(), name='camera_arhive'),
+    url(r'^sendmymail/?$', views.SendMailCls.as_view(), name='sendmymail'),
+
 
 
 ]

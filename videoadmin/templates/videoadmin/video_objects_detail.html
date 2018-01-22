@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load video_tags %}
 
 
 
@@ -22,12 +23,23 @@
 <a href="{% url 'camera' cameras.pk %}">
         <center>
 
-            <div class="img_box" style="height: 250px; width: 250px; background: url({% static 'images/blank.png' %});">
-            <img width="250" height="250"  src="{{ cameras.server_ip }}/rsapi/snapshot?id={{ cameras.camera_id }}&viewSize=250x250&user={{ cameras.server_login }}&password={{ cameras.server_pass }}" ><br>
+            {% if cameras.file  %}
+            <div class="img_box" style="height: 150px; width: 250px; background: url({% static 'images/blank.png' %});">
+            <img width="250" class="camera_stream1"   src="{{ cameras.file.url }}" ><br>
             </div>
 
+
+            {% else %}
+
+
+            <div class="img_box" style="height: 150px; width: 250px; background: url({% static 'images/blank.png' %});">
+            <img width="250" height="140" class="camera_stream"   src="http://185.40.77.66:5000/snapshot/{{ cameras.camera_id }}/{{user.id}}/{{user.id | md5}}" ><br>
+            </div>
+
+            {%  endif %}
+
             <b>{{ cameras.title }}</b><br><!--{{cameras.camera_description}}-->
-            <br>
+
 
             </center><br><br>
         </a>

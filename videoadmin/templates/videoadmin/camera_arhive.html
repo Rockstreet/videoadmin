@@ -12,8 +12,9 @@
 
 <div class="container">
     <div class="row">
+        <br><br><br>
         <div class='col-sm-3'>
-            <div class="form-group">Введите дату и время:
+            <div class="form-group inline-group">
                 <div class='input-group date' id='datetimepicker2'>
                     <input type='text' class="form-control" id="mydate">
                     <span class="input-group-addon">
@@ -21,16 +22,21 @@
                     </span>
                 </div>
 <br>
-                <div class='input-group'>
 
-                <input type="button" class="btn btn-primary" id="get_me_arheve" value="Смотреть">
-
-                </div>
 
 
 
 
             </div>
+        </div>
+        <div class="'col-sm-3">
+
+            <div class='inline-group'>
+
+                <input type="button" class="btn btn-primary" onclick="generate_archive_link('{{ object.server_ip }}','{{ object.camera_id }}','{{ object.server_login }}','{{ object.server_pass }}');" id="get_me_arheve" value="Смотреть">
+
+                </div>
+
         </div>
 
     </div>
@@ -49,12 +55,10 @@
 
 
 
-        <img width="640" src="{{ object.server_ip }}/rsapi/snapshot?id={{ object.camera_id }}&viewSize=640x480&user={{ object.server_login }}&password={{ object.server_pass }}"><br><br>
+        <img width="640" id="archive_block" src="{{ object.server_ip }}/rsapi/snapshot?id={{ object.camera_id }}&viewSize=640x480&user={{ object.server_login }}&password={{ object.server_pass }}"><br><br>
 
 
-        <img width="640" src="{{ object.server_ip }}/rsapi/archive/mjpeg?id={{ object.camera_id }}&startTime=2017-11-
-19T12:00:01&direction=Forward&speed=2&user={{ object.server_login }}&password={{ object.server_pass }}&v
-iewSize=1024x768"><br><br>
+        <br><br>
 
 
 

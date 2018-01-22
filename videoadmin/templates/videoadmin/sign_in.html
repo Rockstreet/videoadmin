@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="row" style="margin-top:50px;">
+	<h2>Как подключится</h2>
+<div class="col-md-5 col-md-offset-1"	>
+
+
+<form method="post" action="{% url 'sendmymail' %}">
+
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Контактное лицо (Ф.И.О.)</label>
+    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+
+    <div class="form-group">
+    <label for="exampleInputEmail1">Телефон для связи</label>
+    <input type="phone" name="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+
+      <div class="form-group">
+    <label for="exampleInputEmail1">Электронная почта</label>
+    <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+        <div class="form-group">
+    <label for="exampleInputEmail1">Название организации</label>
+    <input type="text" name="orgname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+    <small id="emailHelp" class="form-text text-muted">где нужно установить систему видеонаблюдения, тип объекта т.е. торговое помещение, офисное, складское или производственное</small>
+  </div>
+
+            <div class="form-group">
+    <label for="exampleInputEmail1">ИНН</label>
+    <input type="text" name="inn" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+              <div class="form-group">
+    <label for="exampleInputEmail1">ОРГН</label>
+    <input type="text" name="orgn" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+                <div class="form-group">
+    <label for="exampleInputEmail1">Желаемое количество камер</label>
+    <input type="text" name="camera_cols" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+                  <div class="form-group">
+    <label for="exampleInputEmail1">Есть или нет на объекте интернет (если есть, то какой провайдер)</label>
+    <input type="text" name="internet" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+
+  </div>
+
+
+
+
+  <button type="submit" class="btn btn-primary">Отправить заявку</button>
+
+    <br><br><br><br>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+{% endblock %}

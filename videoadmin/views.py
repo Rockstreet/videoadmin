@@ -6,10 +6,16 @@ from .models import Video_objects, Video_cameras, UserProfileObjects
 
 from django.contrib.auth.models import User
 
+from django.views.generic import View
 
 from . import views
 
 import random, string
+
+
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
 
 
 class ListViewBase(generic.ListView):
@@ -48,6 +54,9 @@ class DetailCameraView(generic.DetailView):
 
 class Contact(generic.TemplateView):
 	template_name = 'videoadmin/contact.html'
+
+class GoodSend(generic.TemplateView):
+	template_name = 'videoadmin/good_send.html'
 	
 class Arhive(generic.TemplateView):
 	template_name = 'videoadmin/arhive.html'
@@ -56,6 +65,40 @@ class Arhive(generic.TemplateView):
 class ArhiveView(generic.DetailView):
     model = Video_cameras
     template_name = 'videoadmin/camera_arhive.html'
+
+
+class Sign_in(generic.TemplateView):
+    model = Video_cameras
+    template_name = 'videoadmin/sign_in.html'
+
+
+class SendMailCls(View):
+    def post(self,request):
+
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        mail = request.POST.get('mail')
+        orgname = request.POST.get('orgname')
+        inn = request.POST.get('inn')
+        orgn = request.POST.get('orgn')
+        camera_cols = request.POST.get('camera_cols')
+        internet = request.POST.get('internet')
+
+
+
+
+        send_message = '<h2>Сообщение с сайта OKO36 </h2>'
+        send_message = send_message+'<b>Имя:</b> '+name+'<br><br>'
+        send_message = send_message+'<b>Телефон:</b> '+phone+'<br><br>'
+        send_message = send_message+'<b>E-mail:</b> '+mail+'<br><br>'
+        send_message = send_message+'<b>Организация:</b> '+orgname+'<br>'
+        send_message = send_message+'<b>ИНН:</b> '+inn+'<br>'
+        send_message = send_message+'<b>ОРГН:</b> '+orgn+'<br>'
+        send_message = send_message+'<b>Колличество камер:</b> '+camera_cols+'<br>'
+        send_message = send_message+'<b>Наличие интернета:</b> '+internet+'<br>'
+        send_mail('Письмо с сайта OKO36', send_message, 'sendfromsite@caimanfishing.ru', ['ivan.tolkachev@gmail.com'], fail_silently=False, auth_user=None, auth_password=None, connection=None, html_message=send_message)
+
+        return HttpResponseRedirect('/good_send')
 
 
 class GenerateUsers(generic.TemplateView):

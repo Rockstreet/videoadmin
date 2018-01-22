@@ -59,7 +59,7 @@
         <nav>
           <ul class="nav nav-justified">
             <li class="active"><a href="/">Главная</a></li>
-            <li><a href="">Как подключится </a></li>
+            <li><a href="{% url 'sign_in' %}">Как подключится </a></li>
             <li><a href="#">О нас</a></li>
             <li><a href="/contact">Контакты</a></li>
           </ul>
@@ -105,38 +105,12 @@
 
     <script language="JavaScript">
 
-        function get_me_arheve()
-        {
-
-        }
 
 
 
+        function generate_archive_link(server_ip,camera_id,server_login,server_pass) {
 
-         $(function () {
-
-             d=new Date();
-             d2=new Date();
-
-             d2.setDate(d2.getDate() - 10);
-
-
-
-
-
-
-                $('#datetimepicker2').datetimepicker({
-                    locale: 'ru',
-                    minDate: d2,
-                    maxDate: d
-
-                });
-
-
-                $('#get_me_arheve').click(function () {
-
-
-                     function formatDate(date) {
+              function formatDate(date) {
 
                           var dd = date.getDate();
                           if (dd < 10) dd = '0' + dd;
@@ -176,11 +150,65 @@
 
                     get_time=formatTime(dat);
 
+            arc_link = server_ip + '/rsapi/archive/mjpeg?id=' + camera_id + '&startTime=' + get_date + 'T' + get_time + '&direction=Forward&speed=2&user=' + server_login + '&password=' + server_pass + '&viewSize=1024x768';
+            $('#archive_block').attr('src',arc_link);
 
-                    alert(get_date);
-                    alert(get_time);
+        }
 
 
+
+
+
+         $(function () {
+
+             //http://185.40.77.67:11012/rsapi/mjpeg?id=e0794098-96ca-48a3-87f0-149adbe94771&framerate=10&user=Berez_w&password=BVgQhK&viewSize=1024x768
+             //http://185.40.77.67:11012/rsapi/snapshot?id=5bfeb5c3-1b0a-477e-9b82-44ffcad1e452&viewSize=250&user=Berez_w&password=BVgQhK
+
+             http://185.40.77.67:11012/rsapi/mjpeg?id=5bfeb5c3-1b0a-477e-9b82-44ffcad1e452&viewSize=250&user=Berez_w&password=BVgQhK
+
+
+             $('.camera_stream').mouseenter(function() {
+
+                 var res=$(this).attr('src');
+
+                 res=res.replace("snapshot","video_feed");
+
+                 $(this).attr('src',res);
+
+
+
+            });
+
+             $('.camera_stream').mouseleave(function() {
+
+                 var res=$(this).attr('src');
+
+                 res=res.replace("video_feed","snapshot");
+
+                 $(this).attr('src',res);
+
+            });
+
+
+
+
+
+
+
+             d=new Date();
+             d2=new Date();
+
+             d2.setDate(d2.getDate() - 10);
+
+
+
+
+
+
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'ru',
+                    minDate: d2,
+                    maxDate: d
 
                 });
 

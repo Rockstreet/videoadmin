@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'mptt',
     'videoadmin',
     'nested_admin',
-    'registration'
+    'registration',
+
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,20 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+
+
+EMAIL_HOST = 'smtp.yandex.ru'
+
+EMAIL_HOST_USER = 'sendfromsite@caimanfishing.ru'
+
+EMAIL_HOST_PASSWORD = '24sendfromsite24'
+
+EMAIL_PORT = '465'
+
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # Password validation
