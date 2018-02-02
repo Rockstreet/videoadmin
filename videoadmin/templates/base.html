@@ -108,7 +108,10 @@
 
 
 
-        function generate_archive_link(server_ip,camera_id,server_login,server_pass) {
+
+
+
+        function generate_archive_link(camera_id,user_id,user_hash) {
 
               function formatDate(date) {
 
@@ -150,10 +153,20 @@
 
                     get_time=formatTime(dat);
 
-            arc_link = server_ip + '/rsapi/archive/mjpeg?id=' + camera_id + '&startTime=' + get_date + 'T' + get_time + '&direction=Forward&speed=2&user=' + server_login + '&password=' + server_pass + '&viewSize=1024x768';
+
+
+            arc_link = 'http://185.40.77.66:5000/video_archive/' + camera_id + '/'+user_id+'/' + get_date + 'T' + get_time + '/'+user_hash;
             $('#archive_block').attr('src',arc_link);
 
+            //alert(arc_link);
+
         }
+
+
+
+
+
+
 
 
 
@@ -164,7 +177,7 @@
              //http://185.40.77.67:11012/rsapi/mjpeg?id=e0794098-96ca-48a3-87f0-149adbe94771&framerate=10&user=Berez_w&password=BVgQhK&viewSize=1024x768
              //http://185.40.77.67:11012/rsapi/snapshot?id=5bfeb5c3-1b0a-477e-9b82-44ffcad1e452&viewSize=250&user=Berez_w&password=BVgQhK
 
-             http://185.40.77.67:11012/rsapi/mjpeg?id=5bfeb5c3-1b0a-477e-9b82-44ffcad1e452&viewSize=250&user=Berez_w&password=BVgQhK
+             //http://185.40.77.67:11012/rsapi/mjpeg?id=5bfeb5c3-1b0a-477e-9b82-44ffcad1e452&viewSize=250&user=Berez_w&password=BVgQhK
 
 
              $('.camera_stream').mouseenter(function() {

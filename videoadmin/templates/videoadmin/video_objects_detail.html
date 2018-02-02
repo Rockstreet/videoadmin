@@ -11,9 +11,46 @@
 
     {% if user and not user.is_anonymous %}
 
-    <div class="row" style="margin-top:50px;">
+
+{% block breadcrumb %}
+<div class="row" style="margin-top:20px;">
+        <a href="/" class="breadcumb__page no-decoration">Главная</a>
+					<span class="breadcumb__del no-decoration">»</span>
+                    {% for parent in object.get_ancestors %}
+                        <a href="{% url 'cameras' parent.pk %}">{{ parent.title }}</a>
+                    <span class="breadcumb__del no-decoration">»</span>
+                    {% endfor %}
+     {{ object.title }}
+</div>
+{% endblock %}
+
+
+    <div class="row" style="margin-top:20px;">
         <div class="col-md-4"><h2>{{ object.title }}</h2></div>
     </div>
+
+
+
+                <div class="row">
+
+        {% for item_obj in arr_obj %}
+
+             <div class="col-md-4">
+                       <a href="{% url 'cameras' item_obj.pk %}">
+        <center>
+            <img src="/video_objects/{{item_obj.file}}" title="{{item_obj.title}}"><br>
+
+            <b>{{ item_obj.title }}</b><br>{{item_obj.meta_description}}
+            <br>
+
+            </center><br><br>
+        </div>
+
+         {% endfor %}
+
+                </div>
+
+
 
     <div class="row">
     {% for cameras in arr_cam %}

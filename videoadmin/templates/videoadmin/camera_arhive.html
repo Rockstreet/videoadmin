@@ -1,12 +1,35 @@
 {% extends "base.html" %}
-
+{% load video_tags %}
 
 {% block content %}
 
 {% if user and not user.is_anonymous %}
 
-    <div class="row" style="margin-top:50px;">
-        <div class="col-md-4"><h2>Архив - {{ object.title }}</h2></div>
+
+        {% block breadcrumb %}
+<div class="row" style="margin-top:20px;">
+        <a href="/" class="breadcumb__page no-decoration">Главная</a>
+					<span class="breadcumb__del no-decoration">»</span>
+                    {% for parent in current_category.get_ancestors %}
+                        <a href="{% url 'cameras' parent.pk %}">{{ parent.title }}</a>
+                    <span class="breadcumb__del no-decoration">»</span>
+                    {% endfor %}
+
+<a href="{% url 'cameras' current_category.pk %}"> {{ current_category.title }} </a>
+                    <span class="breadcumb__del no-decoration">»</span>
+
+<a href="{% url 'camera' object.pk %}"> {{  object.title  }} </a>
+                    <span class="breadcumb__del no-decoration">»</span>
+Архив
+
+
+</div>
+{% endblock %}
+
+
+
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12"><h2>Архив - {{ object.title }}</h2></div>
     </div>
 
 
@@ -33,7 +56,7 @@
 
             <div class='inline-group'>
 
-                <input type="button" class="btn btn-primary" onclick="generate_archive_link('{{ object.server_ip }}','{{ object.camera_id }}','{{ object.server_login }}','{{ object.server_pass }}');" id="get_me_arheve" value="Смотреть">
+                <input type="button" class="btn btn-primary" onclick="generate_archive_link('{{ object.camera_id }}','{{user.id}}','{{user.id | md5}}');" id="get_me_arheve" value="Смотреть">
 
                 </div>
 
@@ -54,9 +77,7 @@
 
 
 
-
-        <img width="640" id="archive_block" src="{{ object.server_ip }}/rsapi/snapshot?id={{ object.camera_id }}&viewSize=640x480&user={{ object.server_login }}&password={{ object.server_pass }}"><br><br>
-
+            <img width="700" height="394" id="archive_block" src="http://185.40.77.66:5000/snapshot/{{ object.camera_id }}/{{user.id}}/{{user.id | md5}}">
 
         <br><br>
 
@@ -67,7 +88,8 @@
 
 
 
-<a href="{% url 'camera' object.pk %}" class="btn btn-primary">Смотреть трансляцию</a>
+<a href="{% url 'camera' object.pk %}" class="btn btn-primary">Смотреть трансляцию</a><br><br>
+        <br><br>
 
     </div>
 

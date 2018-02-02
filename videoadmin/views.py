@@ -41,14 +41,27 @@ class DetailView(generic.DetailView):
 
         context = super(DetailView, self).get_context_data(**kwargs)
 
-        print(context['object'].pk)
+        #print(context['object'].pk)
 
         context['arr_cam'] = Video_cameras.objects.filter(category=context['object'].pk).all
+
+        context['arr_obj']= Video_objects.objects.filter(parent=context['object'].pk).all
 
 
         return context
 
 class DetailCameraView(generic.DetailView):
+
+
+    def get_context_data(self, **kwargs):
+
+        context = super(DetailCameraView, self).get_context_data(**kwargs)
+
+        context['current_category']=context['object'].category.first()
+
+        return context
+
+
     model = Video_cameras
 
 
@@ -63,6 +76,13 @@ class Arhive(generic.TemplateView):
 
 
 class ArhiveView(generic.DetailView):
+    def get_context_data(self, **kwargs):
+
+        context = super(ArhiveView, self).get_context_data(**kwargs)
+
+        context['current_category']=context['object'].category.first()
+
+        return context
     model = Video_cameras
     template_name = 'videoadmin/camera_arhive.html'
 

@@ -7,7 +7,23 @@
 
 {% if user and not user.is_anonymous %}
 
-    <div class="row" style="margin-top:50px;">
+    {% block breadcrumb %}
+<div class="row" style="margin-top:20px;">
+        <a href="/" class="breadcumb__page no-decoration">Главная</a>
+					<span class="breadcumb__del no-decoration">»</span>
+                    {% for parent in current_category.get_ancestors %}
+                        <a href="{% url 'cameras' parent.pk %}">{{ parent.title }}</a>
+                    <span class="breadcumb__del no-decoration">»</span>
+                    {% endfor %}
+
+<a href="{% url 'cameras' current_category.pk %}"> {{ current_category.title }} </a>
+                    <span class="breadcumb__del no-decoration">»</span>
+
+     {{ object.title }}
+</div>
+{% endblock %}
+
+    <div class="row" style="margin-top:20px;">
         <div class="col-md-4"><h2>{{ object.title }}</h2></div> 
     </div>
 
