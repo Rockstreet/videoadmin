@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="46cc2fd7-44c9-41f5-834c-2e56d01c3ecb" name="video_test" url="http://185.40.77.66">
+        <fileTransfer host="185.40.77.66" port="22" rootFolder="/home/vibor/project/videoadmin" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

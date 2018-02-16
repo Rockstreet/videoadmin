@@ -12,6 +12,8 @@ from . import views
 
 import random, string
 
+from pprint import pprint
+
 
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -163,5 +165,34 @@ class GenerateUsers(generic.TemplateView):
         context['file_mas']=file_mas
 
         context['user']='Пользователи'
+
+        return context
+
+
+class GetUser(generic.TemplateView):
+    template_name = 'videoadmin/get_users.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GetUser, self).get_context_data(**kwargs)
+
+
+        users=User.objects.filter(username__icontains='del');
+
+        for user in users:
+
+
+            profile = UserProfileObjects.objects.filter(user=User.objects.filter(username=user.username)).first()
+
+            print(profile.objects.firts())
+
+            #profile.video_objects.add(Video_objects.objects.filter(id=8).first().pk)
+
+
+
+
+
+        context['file_mas'] = profile.user
+
+
 
         return context

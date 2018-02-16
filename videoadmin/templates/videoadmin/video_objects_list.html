@@ -40,15 +40,21 @@
 
         {% for item_obj in object_list %}
 
-        <div class="col-md-4">
+
+           {%if not item_obj.parent %}
+         <div class="col-md-4">
+
         <center>
-            <img width="300" src="/video_objects/{{item_obj.file}}" title="{{item_obj.title}}"><br>
+            <img src="/video_objects/{{item_obj.file}}" title="{{item_obj.title}}"><br>
 
             <b>{{ item_obj.title }}</b><br>{{item_obj.meta_description}}
             <br>
 
             </center><br><br>
         </div>
+
+            {% endif %}
+
         {% endfor %}
 
 
