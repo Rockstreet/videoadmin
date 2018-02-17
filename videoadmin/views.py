@@ -94,6 +94,11 @@ class Sign_in(generic.TemplateView):
     template_name = 'videoadmin/sign_in.html'
 
 
+class Graph(generic.TemplateView):
+    model = Video_cameras
+    template_name = 'videoadmin/graph.html'
+
+
 class SendMailCls(View):
     def post(self,request):
 
@@ -118,7 +123,7 @@ class SendMailCls(View):
         send_message = send_message+'<b>ОРГН:</b> '+orgn+'<br>'
         send_message = send_message+'<b>Колличество камер:</b> '+camera_cols+'<br>'
         send_message = send_message+'<b>Наличие интернета:</b> '+internet+'<br>'
-        send_mail('Письмо с сайта OKO36', send_message, 'sendfromsite@caimanfishing.ru', ['ivan.tolkachev@gmail.com'], fail_silently=False, auth_user=None, auth_password=None, connection=None, html_message=send_message)
+        send_mail('Письмо с сайта OKO36', send_message, 'oko36vrn@yandex.ru', ['ivan.tolkachev@gmail.com'], fail_silently=False, auth_user=None, auth_password=None, connection=None, html_message=send_message)
 
         return HttpResponseRedirect('/good_send')
 

@@ -36,6 +36,7 @@ urlpatterns = [
 
     url(r'^contact', views.Contact.as_view(), name='contact'),
     url(r'^sign_in', views.Sign_in.as_view(), name='sign_in'),
+    url(r'^graph', views.Graph.as_view(), name='graph'),
     url(r'^arhive', views.Arhive.as_view(), name='arhive'),
     url(r'^good_send', views.GoodSend.as_view(), name='good_send'),
     url(r'^camera_arhive/(?P<pk>[-\w]+)/$', views.ArhiveView.as_view(), name='camera_arhive'),

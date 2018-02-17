@@ -94,9 +94,9 @@ DATABASES = {
 
 EMAIL_HOST = 'smtp.yandex.ru'
 
-EMAIL_HOST_USER = 'sendfromsite@caimanfishing.ru'
+EMAIL_HOST_USER = 'oko36vrn@yandex.ru'
 
-EMAIL_HOST_PASSWORD = '24sendfromsite24'
+EMAIL_HOST_PASSWORD = 'Azsxdcoko!'
 
 EMAIL_PORT = '465'
 
