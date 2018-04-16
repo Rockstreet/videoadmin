@@ -23,14 +23,52 @@
 </div>
 {% endblock %}
 
+
+
+
+
+
+
+    <a id="zoom_out" title="Уменьшить" style=""> <i   class="fas fa-compress fa-4x" style="cursor: pointer; color: #ffffff"></i></a>
+
+
+
+
     <div class="row" style="margin-top:20px;">
         <div class="col-md-4"><h2>{{ object.title }}</h2></div> 
     </div>
 
+
+
+
     <div class="row" style="margin-top:50px;">
         <div class="col-md-4 center-block" >
 
-                <img width="700" src="http://185.40.77.66:5000/video_feed/{{ object.camera_id }}/{{user.id}}/{{user.id | md5}}"><br><br>
+            <div style="width: 700px; min-height: 300px;background-color: rgba(0,0,0,0.6);" >
+
+                 <div class="loader-wrapper" id="loader-4" style="position: relative;">
+        <div id="loader">L</div>
+        <div id="loader">O</div>
+        <div id="loader">A</div>
+        <div id="loader">D</div>
+        <div id="loader">I</div>
+        <div id="loader">N</div>
+        <div id="loader">G</div>
+                 </div>
+
+               <img id="main_video" class="no_zoom_video" src="http://185.40.77.66:5000/video_feed/{{ object.camera_id }}/{{user.id}}/{{user.id | md5}}">
+            </div>
+
+
+
+            <div id="botton_line" width="700" height="40" style="position:relative;width:700px;height:30px;margin-top:-30px; text-align: right; padding:2px 20px 2px 20px; background-color: rgba(0,0,0,0.6);">
+
+               <a id="zoom_in" title="Увеличить"> <i  title="Увеличить" class="fas fa-expand-arrows-alt fa-2x" style="cursor: pointer; color: #ffffff"></i></a>
+
+            </div>
+
+
+            <br><br>
 
 {% comment %}
         <img width="700" src="{{ object.server_ip }}/rsapi/mjpeg?id={{ object.camera_id }}&framerate=10&user={{ object.server_login }}&password={{ object.server_pass }}&v
