@@ -20,6 +20,7 @@
 
 <a href="{% url 'camera' object.pk %}"> {{  object.title  }} </a>
                     <span class="breadcumb__del no-decoration">»</span>
+<a id="zoom_out" title="Уменьшить" style=""> <i   class="fas fa-compress fa-4x" style="cursor: pointer; color: #ffffff"></i></a>
 Архив
 
 
@@ -44,7 +45,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-<br>
+
 
 
 
@@ -56,7 +57,7 @@
 
             <div class='inline-group'>
 
-                <input type="button" class="btn btn-primary" onclick="generate_archive_link('{{ object.camera_id }}','{{user.id}}','{{user.id | md5}}');" id="get_me_arheve" value="Смотреть">
+                <input type="button" id="archive_button" class="btn btn-primary" onclick="generate_archive_link('{{ object.camera_id }}','{{user.id}}','{{user.id | md5}}');" id="get_me_arheve" value="Смотреть">
 
                 </div>
 
@@ -65,29 +66,75 @@
     </div>
 </div>
 
+{% comment %}
+
+                <div class="slidecontainer" style="margin: 2px 0px 2px 0px; width: 700px;">
+                    <form>
+{% endcomment %}
+                    <input style="width: 700px; margin-bottom: 10px;" type="range" name="foo" min="1" max="1440" value="720" class="slider" id="timeRange" >
+
+{% comment %}
+<output for="foo" onforminput="value = foo.valueAsNumber;"></output>
+
+</form>
+
+</div>
+{% endcomment %}
 
 
 
 
+    <div class="row" style="">
 
-
-
-    <div class="row" style="margin-top:50px;">
         <div class="col-md-4 center-block" >
 
 
+        <div style="width: 700px; min-height: 393px;background-color: rgba(0,0,0,0.6);" >
 
-            <img width="700" height="394" id="archive_block" src="http://185.40.77.66:5000/snapshot/{{ object.camera_id }}/{{user.id}}/{{user.id | md5}}">
+                 <div class="loader-wrapper" id="loader-4" style="position: relative; display: none;">
+        <div id="loader">L</div>
+        <div id="loader">O</div>
+        <div id="loader">A</div>
+        <div id="loader">D</div>
+        <div id="loader">I</div>
+        <div id="loader">N</div>
+        <div id="loader">G</div>
+                 </div>
 
-        <br><br>
+               <img id="main_video" class="no_zoom_video" src="http://185.40.77.66:5000/video_feed/{{ object.camera_id }}/{{user.id}}/{{user.id | md5}}">
+            </div>
+
+        <div id="botton_line
+" width="700" height="42" style="font-size: 1.7em;position:relative;width:700px;height:30px;margin-top:-30px; text-align: right; padding:0px 20px 2px 2px; background-color: rgba(0,0,0,0.6);">
+
+
+
+            <li style="float:left;margin: 0;padding: 0;">
+
+                <a id="stop_play_arhive" title="Стоп"> <i  title="Стоп" class="glyphicon glyphicon-stop g" style="cursor: pointer; color: #ffffff"></i></a>
+
+                {% comment %}
+
+                <a id="play_arhive" title="Старт"> <i  title="Старт" class="glyphicon glyphicon-play" style="cursor: pointer; color: #ffffff"></i></a>
+                {% endcomment %}
+            </li>
+
+
+
+               <a id="zoom_in" title="Увеличить"> <i  title="Увеличить" class="glyphicon glyphicon-zoom-in" style="cursor: pointer; color: #ffffff"></i></a>
+
+        </div>
 
 
 
 
 
 
+{% comment %}<img width="700" height="394" id="archive_block" src="http://185.40.77.66:5000/snapshot/{{ object.camera_id }}/{{user.id}}/{{user.id | md5}}">{% endcomment %}
 
 
+
+            <br><br>
 <a href="{% url 'camera' object.pk %}" class="btn btn-primary">Смотреть трансляцию</a><br><br>
         <br><br>
 

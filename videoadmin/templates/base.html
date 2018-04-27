@@ -14,6 +14,9 @@
 
     <link href="{% static 'css/loader/loader-4.css' %}" rel="stylesheet">
 
+
+    <link href="{% static 'css/barstyle.css' %}" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -112,9 +115,9 @@
 
       </div>
 
-<div class="row" style="margin-top:50px;margin-botttom:50px;">
+{% comment %}<div class="row" style="margin-top:50px;margin-botttom:50px;">
 	<div align="center"><b><i>Уважаемые жильцы, сайт находится в разработке. Приносим свои извинения за доставленные неудобства!</i></b></div>
-</div>
+</div>{% endcomment %}
 
 
 
@@ -154,15 +157,7 @@
 
 
 
-
-
-
-
-
-
-        function generate_archive_link(camera_id,user_id,user_hash) {
-
-              function formatDate(date) {
+                        function formatDate(date) {
 
                           var dd = date.getDate();
                           if (dd < 10) dd = '0' + dd;
@@ -189,6 +184,19 @@
                       }
 
 
+
+
+
+
+
+
+
+
+        function generate_archive_link(camera_id,user_id,user_hash) {
+
+
+
+
                    //2017-11-19
 
                     //d=new Date($('#mydate').val());
@@ -204,8 +212,8 @@
 
 
 
-            arc_link = 'http://185.40.77.66:5000/video_archive/' + camera_id + '/'+user_id+'/' + get_date + 'T' + get_time + '/'+user_hash;
-            $('#archive_block').attr('src',arc_link);
+            arc_link = 'http://185.40.77.66:5000/video_archive/' + camera_id + '/'+user_id+'/' + get_date + 'T' + get_time + '/'+user_hash+'/Forward/1';
+            $('#main_video').attr('src',arc_link);
 
             //alert(arc_link);
 
@@ -230,6 +238,21 @@
 
         }
 
+        function get_bar_tiome(dec_time){
+
+            return addZero(2,(dec_time / 60 | 0)) + ":" + addZero(2,dec_time % 60);
+
+        }
+
+
+        function addZero(digits_length, source) {
+            var text = source + '';
+            while (text.length < digits_length)
+                text = '0' + text;
+            return text;
+
+        }
+
 
 
 
@@ -240,6 +263,81 @@
 
          $(function () {
 
+
+var el, newPoint, newPlace, offset;
+
+// Select all range inputs, watch for change
+$("input[type='range']").change(function() {
+
+ // Cache this for efficiency
+ el = $(this);
+
+ // Measure width of range input
+ width = el.width();
+
+ // Figure out placement percentage between left and right of input
+ newPoint = (el.val() - el.attr("min")) / (el.attr("max") - el.attr("min"));
+
+  offset = -2;
+
+ // Prevent bubble from going beyond left or right (unsupported browsers)
+ if (newPoint < 0) { newPlace = 0; }
+ else if (newPoint > 1) { newPlace = width; }
+ else { newPlace = width * newPoint + offset; offset -= newPoint; }
+
+ // Move bubble
+ el
+   .next("output")
+   .css({
+     left: newPlace,
+     marginLeft: offset + "%"
+   })
+     .text(el.val());
+ })
+ // Fake a change to position bubble at page load
+ .trigger('change');
+
+
+
+
+
+
+
+
+
+
+
+
+             $('#timeRange').change(function () {
+
+                 var time=get_bar_tiome($('#timeRange').val());
+
+
+                 dat=$('#datetimepicker2').datetimepicker("date");
+
+                 dat=new Date(dat);
+
+                 get_date=formatDate(dat);
+
+                 get_time=formatTime(dat);
+
+
+                 var d = new Date(get_date+'T'+time);
+
+
+                 $('#datetimepicker2').data("DateTimePicker").date(d);
+
+
+
+                 $('#archive_button').click();
+
+
+
+
+
+
+
+             });
 
 
 
